@@ -1,89 +1,131 @@
-<div class="min-h-screen flex flex-col items-center justify-center bg-white font-mono text-gray-900 p-4">
-  
+<div
+  class="min-h-screen flex flex-col items-center justify-center bg-white font-mono text-gray-900 p-4"
+>
   <div class="text-center mb-8">
-    <h1 class="text-5xl font-black tracking-tighter">
-      TI<span class="text-blue-700"> UFRN</span>
-    </h1>
+    <h1 class="text-5xl font-black tracking-tighter" style="font-family: 'Space Grotesk', sans-serif;">
+    <span class="text-green-700">Potiguana</span>
+    <span class="text-black"> TI</span>
+  </h1>
     <p class="text-xs font-bold uppercase tracking-[0.3em] mt-2 text-gray-500">
       Setor 4 // Sistema_V1.0
     </p>
     <div class="w-62 h-1 bg-black mx-auto mt-4"></div>
   </div>
 
-  <div class="w-full max-w-md bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative">
-    
+  <div
+    class="w-full max-w-md bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative"
+  >
     <h2 class="text-3xl font-bold mb-2 uppercase">Acesso</h2>
     <p class="text-sm text-gray-600 mb-8 font-sans">
       Faça login com suas credenciais para continuar
     </p>
-    
+
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      
       <div class="mb-6">
         <label class="block text-xs font-bold uppercase mb-2" for="email">Email</label>
-        <input 
+        <input
           formControlName="email"
-          id="email" 
-          type="email" 
+          id="email"
+          type="email"
           placeholder="seu.email@ufrn.edu.br"
           class="w-full bg-white border-2 border-black p-3 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder:text-gray-400"
-          [ngClass]="{'bg-red-50 border-red-500': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}">
-        
-        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-red-600 text-xs font-bold mt-1">
+          [ngClass]="{
+            'bg-red-50 border-red-500':
+              loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+          }"
+        />
+
+        <div
+          *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+          class="text-red-600 text-xs font-bold mt-1"
+        >
           * EMAIL INVÁLIDO
         </div>
       </div>
 
       <div class="mb-6">
         <label class="block text-xs font-bold uppercase mb-2" for="password">Senha</label>
-        <input 
+        <input
           formControlName="password"
-          id="password" 
-          type="password" 
+          id="password"
+          type="password"
           placeholder="........"
           class="w-full bg-white border-2 border-black p-3 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder:text-gray-400"
-          [ngClass]="{'bg-red-50 border-red-500': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
-        
-        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-red-600 text-xs font-bold mt-1">
+          [ngClass]="{
+            'bg-red-50 border-red-500':
+              loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+          }"
+        />
+
+        <div
+          *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          class="text-red-600 text-xs font-bold mt-1"
+        >
           * SENHA OBRIGATÓRIA (MIN 6)
         </div>
       </div>
 
       <div class="flex items-center justify-between mb-8 text-xs font-bold">
         <label class="flex items-center cursor-pointer">
-          <input type="checkbox" class="w-4 h-4 border-2 border-black rounded-none text-blue-600 focus:ring-0 checked:bg-blue-600 mr-2">
+          <input
+            type="checkbox"
+            class="w-4 h-4 border-2 border-black rounded-none text-blue-600 focus:ring-0 checked:bg-blue-600 mr-2"
+          />
           Lembrar-me
         </label>
         <a href="#" class="hover:underline hover:text-blue-700">Esqueceu a senha?</a>
       </div>
 
-      <button 
+      <button
         type="submit"
         [disabled]="loginForm.invalid"
-        class="w-full bg-blue-700 text-white font-bold py-4 px-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider flex items-center justify-center gap-2">
+        class="w-full bg-blue-700 text-white font-bold py-4 px-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider flex items-center justify-center gap-2"
+      >
         <span>&rarr;</span> ENTRAR
       </button>
-
     </form>
 
     <div class="relative flex py-8 items-center">
-        <div class="flex-grow border-t-2 border-black"></div>
-        <span class="flex-shrink mx-4 text-xs font-bold uppercase bg-white px-2">OU</span>
-        <div class="flex-grow border-t-2 border-black"></div>
+      <div class="flex-grow border-t-2 border-black"></div>
+      <span class="flex-shrink mx-4 text-xs font-bold uppercase bg-white px-2">OU</span>
+      <div class="flex-grow border-t-2 border-black"></div>
     </div>
 
     <div class="bg-blue-50 border-2 border-dashed border-black p-6 text-center">
       <p class="text-sm font-bold mb-4">Não tem uma conta?</p>
-      
-      <a routerLink="/register" class="inline-block w-full bg-white text-black font-bold py-3 px-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all uppercase text-xs cursor-pointer no-underline">
+
+      <a
+        routerLink="/register"
+        class="inline-block w-full bg-white text-black font-bold py-3 px-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all uppercase text-xs cursor-pointer no-underline"
+      >
         Criar conta agora
       </a>
     </div>
-
   </div>
-  
+
   <div class="mt-12 text-xs font-mono text-gray-500">
     &copy; 2025 UFRN - Setor 4 TI. Todos os direitos reservados.
   </div>
 
+  <div
+    class="mt-12 flex items-center justify-center gap-3 opacity-80 hover:opacity-100 transition-opacity select-none pb-8"
+  >
+    <img
+      src="images/camaleao-ufrn.png"
+      alt="Logo Equipe"
+      class="h-16 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all"
+    />
+
+    <div class="text-sm flex items-center gap-1">
+      <span class="text-gray-500 font-sans font-normal"> Desenvolvido por </span>
+      <span class="text-gray-700 font-serif font-black tracking-wide text-base">
+        Suporte Técnico de TI do Setor IV
+      </span>
+    </div>
+  </div>
+  <div class="fixed bottom-8 left-8 flex items-end gap-4 z-10">
+    <img src="images/brasao-ufrn.png" alt="Brasão UFRN" class="h-14 w-auto" />
+
+    <img src="images/ct-ufrn.png" alt="Logo CT" class="h-12 w-auto pb-1" />
+  </div>
 </div>

@@ -1,1 +1,120 @@
-<p>register works!</p>
+<div class="min-h-screen flex flex-col items-center justify-center bg-white font-mono text-gray-900 p-4">
+  
+  <div class="text-center mb-8">
+    <h1 class="text-5xl font-black tracking-tighter" style="font-family: 'Space Grotesk', sans-serif;">
+      <span class="text-green-700">Potiguana</span>
+      <span class="text-black"> TI</span>
+    </h1>
+    <p class="text-xs font-bold uppercase tracking-[0.3em] mt-2 text-gray-500">
+      Setor 4 // Criar_Conta
+    </p>
+    <div class="w-64 h-1 bg-black mx-auto mt-4"></div>
+  </div>
+
+  <div class="w-full max-w-md bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative">
+    
+    <h2 class="text-3xl font-bold mb-2 uppercase">Novo Usuário</h2>
+    <p class="text-sm text-gray-600 mb-8 font-sans">
+      Preencha os dados para solicitar acesso
+    </p>
+    
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      
+      <div class="mb-4">
+        <label class="block text-xs font-bold uppercase mb-2">Nome Completo</label>
+        <input 
+          formControlName="name"
+          type="text" 
+          placeholder="João da Silva"
+          class="w-full bg-white border-2 border-black p-3 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder:text-gray-400"
+          [ngClass]="{'bg-red-50 border-red-500': registerForm.get('name')?.invalid && registerForm.get('name')?.touched}">
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-xs font-bold uppercase mb-2">Email</label>
+        <input 
+          formControlName="email"
+          type="email" 
+          placeholder="seu.email@ufrn.edu.br"
+          class="w-full bg-white border-2 border-black p-3 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder:text-gray-400"
+          [ngClass]="{'bg-red-50 border-red-500': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}">
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-xs font-bold uppercase mb-2">Cargo / Função</label>
+        <div class="relative">
+          <select formControlName="role" 
+            class="w-full appearance-none bg-white border-2 border-black p-3 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all text-gray-900 cursor-pointer"
+            [ngClass]="{'bg-red-50 border-red-500': registerForm.get('role')?.invalid && registerForm.get('role')?.touched}">
+            <option value="" disabled selected>Selecione...</option>
+            <option value="suporte">Técnico de Suporte</option>
+            <option value="bolsista">Bolsista</option>
+            <option value="admin">Administrador</option>
+          </select>
+          <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-xs font-bold uppercase mb-2">Senha</label>
+        <input 
+          formControlName="password"
+          type="password" 
+          placeholder="........"
+          class="w-full bg-white border-2 border-black p-3 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder:text-gray-400"
+          [ngClass]="{'bg-red-50 border-red-500': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}">
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-xs font-bold uppercase mb-2">Confirmar Senha</label>
+        <input 
+          formControlName="confirmPassword"
+          type="password" 
+          placeholder="........"
+          class="w-full bg-white border-2 border-black p-3 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder:text-gray-400"
+          [ngClass]="{'bg-red-50 border-red-500': registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched}">
+      </div>
+
+      <div class="flex items-start mb-8 text-xs font-bold">
+        <label class="flex items-center cursor-pointer">
+          <input formControlName="terms" type="checkbox" class="w-4 h-4 border-2 border-black rounded-none text-blue-600 focus:ring-0 checked:bg-blue-600 mr-2 mt-0.5">
+          <span [class.text-red-600]="registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched">
+            Li e concordo com os termos de uso
+          </span>
+        </label>
+      </div>
+
+      <button 
+        type="submit"
+        [disabled]="registerForm.invalid"
+        class="w-full bg-blue-700 text-white font-bold py-4 px-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider flex items-center justify-center gap-2">
+        <span>&plus;</span> CRIAR CONTA
+      </button>
+
+    </form>
+
+    <div class="relative flex py-8 items-center">
+        <div class="flex-grow border-t-2 border-black"></div>
+        <span class="flex-shrink mx-4 text-xs font-bold uppercase bg-white px-2">VOLTAR</span>
+        <div class="flex-grow border-t-2 border-black"></div>
+    </div>
+
+    <div class="bg-blue-50 border-2 border-dashed border-black p-6 text-center">
+      <p class="text-sm font-bold mb-4">Já possui cadastro?</p>
+      
+      <a routerLink="/login" class="inline-block w-full bg-white text-black font-bold py-3 px-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all uppercase text-xs cursor-pointer no-underline">
+        Fazer Login
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="mt-12 text-xs font-mono text-gray-500">
+    &copy; 2025 UFRN - Setor 4 TI. Todos os direitos reservados.
+  </div>
+
+</div>
