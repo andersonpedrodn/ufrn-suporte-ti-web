@@ -1,0 +1,86 @@
+<div class="w-full bg-[#E5E5E5] border-4 border-black p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+  
+  <div class="mb-6 flex justify-between items-end border-b-4 border-black pb-2">
+    <div>
+      <h2 class="text-3xl font-black uppercase tracking-tighter">MAPA DO SETOR 4</h2>
+      <p class="font-mono text-sm text-gray-600">Clique na sala para ver detalhes</p>
+    </div>
+    <div class="flex gap-4 text-xs font-bold uppercase">
+      <div class="flex items-center gap-1"><span class="w-3 h-3 bg-green-400 border border-black"></span> Operacional</div>
+      <div class="flex items-center gap-1"><span class="w-3 h-3 bg-yellow-400 border border-black"></span> Manutenção</div>
+    </div>
+  </div>
+
+  <div class="overflow-x-auto pb-6 custom-scrollbar">
+    <div class="flex gap-4 min-w-max px-2">
+
+      <div *ngFor="let coluna of colunasMap; let i = index" class="flex flex-col gap-3 w-32">
+        
+        <div class="text-center text-[10px] font-black uppercase text-gray-400 border-b-2 border-dashed border-gray-400 pb-1">
+          FILA {{i + 1}}
+        </div>
+
+        <div *ngFor="let nome of coluna"
+             (click)="abrirDetalhes(nome)"
+             class="group relative bg-white border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-50 transition-all cursor-pointer p-2 flex flex-col items-center justify-center min-h-[90px]">
+          
+          <div class="absolute top-1 right-1 w-2.5 h-2.5 border border-black rounded-full"
+               [ngClass]="getSalaDados(nome).status === 'ok' ? 'bg-green-400' : 'bg-yellow-400'">
+          </div>
+
+          <span class="font-black text-center leading-none mt-1"
+                [ngClass]="nome.length > 8 ? 'text-xs' : (nome.length > 4 ? 'text-sm' : 'text-xl')">
+            {{ nome }}
+          </span>
+
+          <div class="mt-2 flex items-center gap-1 text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span class="text-[10px] font-bold font-mono">{{ getSalaDados(nome).pcs }}</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="modalAberto" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" (click)="fecharModal()"></div>
+  
+  <div class="bg-white border-4 border-black shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] w-full max-w-sm p-6 relative z-10 animate-bounce-in">
+    <div class="flex justify-between items-start mb-4 border-b-4 border-black pb-2">
+      <h3 class="text-3xl font-black uppercase">{{ salaSelecionada?.id }}</h3>
+      <button (click)="fecharModal()" class="text-xl font-bold px-2 hover:bg-red-500 hover:text-white transition-colors border-2 border-transparent hover:border-black">X</button>
+    </div>
+    
+    <div class="space-y-4 font-mono mb-6">
+      <div class="bg-gray-100 p-3 border-2 border-black">
+        <p class="text-xs font-bold text-gray-500">STATUS</p>
+        <div class="flex items-center gap-2 mt-1">
+          <div class="w-3 h-3 rounded-full border border-black" 
+               [ngClass]="salaSelecionada?.status === 'ok' ? 'bg-green-500' : 'bg-yellow-500'"></div>
+          <span class="font-bold uppercase">{{ salaSelecionada?.status === 'ok' ? 'Operacional' : 'Manutenção' }}</span>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-1 bg-gray-100 p-3 border-2 border-black">
+           <p class="text-xs font-bold text-gray-500">COMPUTADORES</p>
+           <p class="text-xl font-black">{{ salaSelecionada?.pcs }}</p>
+        </div>
+        <div class="flex-1 bg-gray-100 p-3 border-2 border-black">
+           <p class="text-xs font-bold text-gray-500">TIPO</p>
+           <p class="text-sm font-bold leading-tight mt-1">{{ salaSelecionada?.detalhes }}</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="w-full bg-blue-600 text-white font-black py-3 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all uppercase">
+      Gerenciar Sala
+    </button>
+  </div>
+</div>
