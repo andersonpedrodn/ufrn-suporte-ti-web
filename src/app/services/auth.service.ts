@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, map, switchMap, of, throwError } from 'rxjs';
 import { DataService, User } from './data.service';
+=======
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+>>>>>>> 23ea293796985b6552b1354d60a3858b04eb076a
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+<<<<<<< HEAD
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
   private readonly TOKEN_KEY = 'auth_token';
@@ -62,3 +68,31 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 }
+=======
+
+  // Pega a URL definida no environment
+  private apiUrl = environment.apiUrl + '/usuario';
+
+  constructor(private http: HttpClient) { }
+
+  login(dados: any) {
+    /*
+     ⚠️ ATENÇÃO: TRADUÇÃO DE CAMPOS
+     O seu formulário usa 'email' e 'password'.
+     O Backend dele (pelo README) espera 'login' e 'senha'.
+     Precisamos converter aqui antes de enviar.
+    */
+    const payload = {
+      login: dados.email,    // Mapeia seu email para o 'login' dele
+      senha: dados.password  // Mapeia sua password para a 'senha' dele
+    };
+
+    return this.http.post(`${this.apiUrl}/login`, payload);
+  }
+
+  cadastrar(dados: any) {
+    // Mesma lógica para o cadastro, ajuste conforme o JSON que ele espera
+    return this.http.post(`${this.apiUrl}/cadastrar`, dados);
+  }
+}
+>>>>>>> 23ea293796985b6552b1354d60a3858b04eb076a
