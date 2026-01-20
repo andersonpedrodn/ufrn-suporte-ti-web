@@ -1,1 +1,62 @@
-<p>home works!</p>
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+  <!-- Header -->
+  <header class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <img src="/icon/logo-potiguana-icon.png" alt="Logo" class="h-12">
+          <div>
+            <h1 class="text-xl font-bold text-gray-800">UFRN Suporte TI</h1>
+            <p class="text-sm text-gray-500">Setor 4 // Sistema_V1.0</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-4">
+          <div class="text-right" *ngIf="currentUser">
+            <p class="text-sm font-semibold text-gray-800">{{ currentUser.name }}</p>
+            <p class="text-xs text-gray-500">{{ currentUser.email }}</p>
+          </div>
+          <button
+            (click)="logout()"
+            class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-all"
+          >
+            Sair
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-white rounded-2xl p-8 shadow-lg">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">
+        Bem-vindo ao Sistema de Suporte TI!
+      </h2>
+      <p class="text-gray-600 mb-8">
+        Você está logado e pode acessar todas as funcionalidades do sistema.
+      </p>
+
+      <!-- Cards de exemplo -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <div class="text-4xl mb-4">📋</div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Chamados</h3>
+          <p class="text-sm text-gray-600">Gerencie seus chamados de suporte</p>
+        </div>
+
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+          <div class="text-4xl mb-4">📊</div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Relatórios</h3>
+          <p class="text-sm text-gray-600">Visualize estatísticas e relatórios</p>
+        </div>
+
+        <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+          <div class="text-4xl mb-4">⚙️</div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Configurações</h3>
+          <p class="text-sm text-gray-600">Ajuste suas preferências</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
